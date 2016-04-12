@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<android.support.v7.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/card_view"
+    card_view:cardElevation="3dp"
+    android:layout_gravity="center"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingLeft="20dp"
+    android:paddingRight="20dp"
+    android:paddingTop="3dp"
+    android:paddingBottom="3dp"
+    android:layout_marginTop="20dp"
+    card_view:cardCornerRadius="4dp">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+
+        <ImageView
+            android:id="@+id/ivParcelImage"
+            android:adjustViewBounds="true"
+            android:layout_alignParentTop="true"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="5dp"
+            />
+
+        <TextView
+            android:id="@+id/TvParcelName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="5dp"
+            android:layout_toRightOf="@id/ivParcelImage"
+            tools:text="Parcel Name"
+            android:textSize="20sp"
+            />
+
+        <TextView
+            android:id="@+id/TvParcelPrice"
+            android:layout_width="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/ivParcelImage"
+            android:layout_below="@+id/TvParcelName"
+            android:layout_marginTop="3dp"
+            tools:text="Parcel Address"
+            android:textSize="12sp"
+            />
+
+    </RelativeLayout>
+</android.support.v7.widget.CardView>

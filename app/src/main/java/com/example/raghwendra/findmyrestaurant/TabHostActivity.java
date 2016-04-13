@@ -20,7 +20,6 @@ import com.google.android.gms.common.api.Status;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.location.places.Place;
 import com.google.android.gms.location.places.ui.PlaceAutocomplete;
-import com.google.android.gms.maps.model.LatLng;
 
 /**
  * Created by raghawendra.kumar on 12-04-2016.
@@ -30,7 +29,8 @@ public class TabHostActivity extends FragmentActivity implements View.OnClickLis
     int PLACE_AUTOCOMPLETE_REQUEST_CODE = 1;
     TextView ed;
     GoogleApiClient mGoogleApiClient = null;
-
+    public static double latitude = 0.00;
+    public static double longitude = 0.00;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,6 +41,7 @@ public class TabHostActivity extends FragmentActivity implements View.OnClickLis
         ed.setOnClickListener(this);
         mTabHost = (FragmentTabHost) findViewById(android.R.id.tabhost);
         mTabHost.setup(this, getSupportFragmentManager(), android.R.id.tabcontent);
+
 
         mTabHost.addTab(
                 mTabHost.newTabSpec("tab1").setIndicator("BreakFast", null),
@@ -63,17 +64,17 @@ public class TabHostActivity extends FragmentActivity implements View.OnClickLis
     }
 
     protected void onStart() {
-        mGoogleApiClient.connect();
         super.onStart();
+        mGoogleApiClient.connect();
     }
 
     protected void onStop() {
         mGoogleApiClient.disconnect();
         super.onStop();
     }
+
     @Override
     public void onClick(View v) {
-        System.out.println("Hi this is for fun");
         try {
             Intent intent =
                     new PlaceAutocomplete.IntentBuilder(PlaceAutocomplete.MODE_FULLSCREEN)
@@ -90,16 +91,15 @@ public class TabHostActivity extends FragmentActivity implements View.OnClickLis
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == PLACE_AUTOCOMPLETE_REQUEST_CODE) {
             if (resultCode == RESULT_OK) {
-                //Place place = PlaceAutocomplete.getPlace(this, data);
                 Place fromPlace = PlaceAutocomplete.getPlace(this, data);
-                LatLng sourceLatlong = fromPlace.getLatLng();
+                latitude = fromPlace.getLatLng().latitude;
+                longitude = fromPlace.getLatLng().longitude;
                 ed.setText(fromPlace.getName());
-                System.out.println("Place: " + fromPlace.getName());
+                System.out.println("Raghu Place: " + fromPlace.getName() + " " + latitude + "  " + longitude);
             } else if (resultCode == PlaceAutocomplete.RESULT_ERROR) {
                 Status status = PlaceAutocomplete.getStatus(this, data);
                 // TODO: Handle the error.
                 System.out.println(status.getStatusMessage());
-
             } else if (resultCode == RESULT_CANCELED) {
                 // The user canceled the operation.
             }
@@ -118,7 +118,8 @@ public class TabHostActivity extends FragmentActivity implements View.OnClickLis
                 //                                          int[] grantResults)
                 // to handle the case where the user grants the permission. See the documentation
                 // for Activity#requestPermissions for more details.
-                return;
+                System.out.println("Raghu on connected returns");
+                //return;
             }
         }
         Location mLastLocation = LocationServices.FusedLocationApi.getLastLocation(

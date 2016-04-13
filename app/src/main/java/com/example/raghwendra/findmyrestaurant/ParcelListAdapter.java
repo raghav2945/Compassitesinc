@@ -57,7 +57,7 @@ public class ParcelListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
         Picasso.with(c).load(item.getLogo_url()).resize(100,100).into(viewHolder.ParcelIcon);
         viewHolder.ParcelName.setText(item.getRestaurant_name());
         viewHolder.ParcelPrice.setText(item.getAddress());
-
+        viewHolder.ParcelDistance.setText(item.distance + " KM");
 
     }
 
@@ -77,6 +77,7 @@ public class ParcelListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
         ImageView ParcelIcon;
         TextView ParcelName;
         TextView ParcelPrice;
+        TextView ParcelDistance;
         public ViewHolderMain(View itemView) {
             super(itemView);
             CardView = (CardView)itemView.findViewById(R.id.card_view);
@@ -84,6 +85,7 @@ public class ParcelListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
 
             ParcelName = (TextView) itemView.findViewById(R.id.TvParcelName);
             ParcelPrice=(TextView) itemView.findViewById(R.id.TvParcelPrice);
+            ParcelDistance=(TextView) itemView.findViewById(R.id.distance);
             CardView.setOnClickListener(this);
         }
 

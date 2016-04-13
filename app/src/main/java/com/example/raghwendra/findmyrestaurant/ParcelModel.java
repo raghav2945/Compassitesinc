@@ -13,17 +13,19 @@ public class ParcelModel implements Parcelable {
     String longitude;
     String phone_number;
     String logo_url;
+    String distance;
 
     public ParcelModel() {
     }
 
-    public ParcelModel(String restaurant_name, String address, String latitude, String longitude, String phone_number, String logo_url) {
+    public ParcelModel(String restaurant_name, String address, String latitude, String longitude, String phone_number, String logo_url, String distance) {
         this.restaurant_name = restaurant_name;
         this.address = address;
         this.latitude = latitude;
         this.longitude = longitude;
         this.phone_number = phone_number;
         this.logo_url = logo_url;
+        this.distance = distance;
     }
 
 
